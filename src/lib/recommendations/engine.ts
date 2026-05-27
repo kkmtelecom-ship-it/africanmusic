@@ -1,4 +1,4 @@
-import artists from "@/data/artists";
+import artists from "@/lib/artists";
 
 export function getRecommendedArtists(genre: string) {
   return artists.filter((artist) =>

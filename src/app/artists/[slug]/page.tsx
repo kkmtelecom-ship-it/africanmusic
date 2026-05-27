@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { notFound } from "next/navigation";
 
 import { getArtistBySlug } from "@/services/artistService";
@@ -20,8 +20,8 @@ interface ArtistPageProps {
   };
 }
 
-export default function ArtistPage({ params }: ArtistPageProps) {
-  const artist = getArtistBySlug(params.slug);
+export default async function ArtistPage({ params }: ArtistPageProps) {
+  const artist = await getArtistBySlug(params.slug);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -78,8 +78,6 @@ export default function ArtistPage({ params }: ArtistPageProps) {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(198,169,114,0.18),transparent_60%)]" />
 
           <div className="mx-auto grid min-h-screen max-w-[1600px] grid-cols-1 items-center gap-20 px-6 py-24 lg:grid-cols-2 lg:px-20">
-            {/* LEFT CONTENT */}
-
             <div className="relative z-10">
               <p className="mb-6 text-xs uppercase tracking-[0.45em] text-[#c6a972]">
                 Featured Artist
@@ -107,8 +105,6 @@ export default function ArtistPage({ params }: ArtistPageProps) {
               </div>
             </div>
 
-            {/* RIGHT IMAGE */}
-
             <CinematicParallax>
               <div className="relative flex justify-center">
                 <div className="relative h-[720px] w-full max-w-[620px] overflow-hidden rounded-[42px] border border-white/10">
@@ -130,8 +126,6 @@ export default function ArtistPage({ params }: ArtistPageProps) {
           </div>
         </section>
       </CinematicReveal>
-
-      {/* STREAMING ECOSYSTEM */}
 
       <section className="mx-auto max-w-[1600px] px-6 py-32 lg:px-20">
         <div className="grid gap-12 lg:grid-cols-2">
